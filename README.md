@@ -6,9 +6,6 @@ This was developed using the tech stack HTML, CSS, JavaScript, PHP, MySQL
 
 **👤 1. Sign Up or Sign In as Recycler/Vendor**
 
-**🔹 Visit the Website Link:**
-Open the Recycle Relay website in your browser (e.g., https://yourdomain.com).
-
 **🔹 Choose Your Role:**
 If you are a recycler (someone who wants to recycle items), go to the Recycler section.
 If you are a vendor (a recycling shop or business), go to the Vendor section.
