@@ -25,14 +25,13 @@ After signing in, you'll see a dashboard where you can manage your recycling sub
 
 **🔹 Upload Your Item:**
 Click on the Upload Item or similar button.
-
-**Fill out the form with:**
-Item Title
-Description
-Category (e.g., plastic, metal, paper)
-Phone number for contact
-Upload a clear photo of the item
-Click Submit.
+  Fill out the form with:
+    Item Title, 
+    Description, 
+    Category (e.g., plastic, metal, paper),
+    Phone number for contact, 
+    Upload a clear photo of the item,
+    Click Submit.
 
 **🔹 Success Confirmation:**
 Once submitted, the item will be saved with the status Pending.
