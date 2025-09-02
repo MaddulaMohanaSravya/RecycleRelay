@@ -1,11 +1,11 @@
-<?php
+ <?php
 // history.php
 $host = "sql312.infinityfree.com";
 $dbname = "if0_39157215_usersauth";
 $username = "if0_39157215";
 $password = "7a3KRSPAcXd9w0E";
 
-$conn = new mysqli($host, $username, $password, $database);
+$conn = new mysqli($host, $username, $password, $dbname);
 
 // Check DB connection
 if ($conn->connect_error) {

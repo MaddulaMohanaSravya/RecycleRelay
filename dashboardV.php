@@ -1,4 +1,4 @@
-<?php
+ <?php
 $host = "sql312.infinityfree.com";
 $dbname = "if0_39157215_usersauth";
 $username = "if0_39157215";
@@ -166,4 +166,4 @@ echo "</div>"; // item-wrapper
 ?>
 
 </body>
-</html>
+</html>

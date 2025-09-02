@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+ document.addEventListener("DOMContentLoaded", function () {
     const signInBox = document.querySelector(".auth-box.signin");
     const signUpBox = document.querySelector(".auth-box.signup");
     const signInBtn = document.getElementById("show-signin");
@@ -24,4 +24,4 @@ document.addEventListener("DOMContentLoaded", function () {
       signInBtn.classList.remove("active");
     }
   });
-  
+ 

@@ -1,4 +1,4 @@
-<?php
+ <?php
 session_start();
 
 $conn = new mysqli("sql312.infinityfree.com", "if0_39157215", "7a3KRSPAcXd9w0E", "if0_39157215_usersauth");
@@ -35,4 +35,4 @@ if ($stmt->execute()) {
     header("Location: indexV.php");
     exit();
 }
-?>
+?

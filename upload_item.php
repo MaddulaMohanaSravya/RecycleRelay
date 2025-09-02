@@ -1,4 +1,5 @@
-<?php
+ <?php
+session_start();
 $conn = new mysqli("sql312.infinityfree.com", "if0_39157215", "7a3KRSPAcXd9w0E", "if0_39157215_usersauth");
 
 if ($conn->connect_error) {
@@ -8,27 +9,40 @@ if ($conn->connect_error) {
 $msg = "";
 
 if (isset($_POST['submit'])) {
-    $title = $_POST['title'];
-    $description = $_POST['description'];
-    $category = $_POST['category'];
-    $phone=$_POST['phone'];
-    $image = $_FILES['image']['name'];
-    $target = "uploads/" . basename($image);
+    $title = trim($_POST['title']);
+    $description = trim($_POST['description']);
+    $category = trim($_POST['category']);
+    $phone = trim($_POST['phone']);
+    $user_id = $_SESSION['user_id'] ?? null; // get logged-in user id
 
-   $sql = "INSERT INTO recycle_items (title, description, category, image_path, status,phone)
-        VALUES ('$title', '$description', '$category', '$target', 'Pending', '$phone')";
-    if ($conn->query($sql) === TRUE) {
-        if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
-            $msg = "✅ Item uploaded successfully!";
+    // validate session
+    if (!$user_id) {
+        $msg = "⚠️ You must be logged in to upload.";
+    } else {
+        // handle image upload
+        $image = $_FILES['image']['name'];
+        $targetDir = "uploads/";
+        $targetFile = $targetDir . uniqid() . "_" . basename($image); // unique filename
+
+        if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
+            // insert into DB using prepared statement
+            $sql = "INSERT INTO recycle_items (user_id, title, description, category, phone, image_path, status) VALUES (?, ?, ?, ?, ?, ?, 'Pending')";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("isssss", $user_id, $title, $description, $category, $phone, $targetFile);
+
+            if ($stmt->execute()) {
+                $msg = "✅ Item uploaded successfully!";
+            } else {
+                $msg = "❌ Database error: " . $stmt->error;
+                unlink($targetFile); // delete file if DB fails
+            }
+            $stmt->close();
         } else {
             $msg = "⚠️ Failed to upload image.";
         }
-    } else {
-        $msg = "❌ Database error: " . $conn->error;
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -132,4 +146,4 @@ if (isset($_POST['submit'])) {
 </div>
 
 </body>
-</html>
+</html

@@ -1,4 +1,4 @@
-<?php
+ <?php
 session_start();
 
 $conn = new mysqli("sql312.infinityfree.com", "if0_39157215", "7a3KRSPAcXd9w0E", "if0_39157215_usersauth");
@@ -26,6 +26,6 @@ if ($result && $result->num_rows > 0) {
 }
 
 $_SESSION['error'] = "Invalid credentials.";
-header("Location: dashboardV.php");
+header("Location: indexV.php");
 exit();
 ?>

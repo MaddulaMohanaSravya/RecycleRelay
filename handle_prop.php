@@ -1,4 +1,4 @@
-<?php
+ <?php
 $host = "sql312.infinityfree.com";
 $dbname = "if0_39157215_usersauth";
 $username = "if0_39157215";
@@ -33,4 +33,4 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 
 $conn->close();
-?>
+?>

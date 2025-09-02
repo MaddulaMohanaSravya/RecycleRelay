@@ -1,7 +1,7 @@
-<?php
+ <?php
 session_start();
 if (isset($_SESSION['email'])) {
-    header("Location: Vsignin.php");
+    header("Location: dashboardV.php");
     exit();
 }
 ?>
@@ -195,7 +195,12 @@ background-color: #256f31;
             <button id="show-signin" class="active">Sign In</button>
             <button id="show-signup">Sign Up</button>
         </div>
-
+        <?php
+            if (isset($_SESSION['error'])) {
+                echo "<p style='color:red;'>" . $_SESSION['error'] . "</p>";
+                unset($_SESSION['error']);
+            }
+            ?>
    
         <form class="auth-box signin" method="POST" action="Vsignin.php">
             <h2>Sign In</h2>

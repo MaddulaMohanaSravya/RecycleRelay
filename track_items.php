@@ -1,20 +1,32 @@
-<?php
-// track_items.php
+ <?php
+session_start();
+
+// Ensure user is logged in
+if (!isset($_SESSION['user_id'])) {
+    header("Location: indexU.php");
+    exit();
+}
+
 $host = "sql312.infinityfree.com";
 $dbname = "if0_39157215_usersauth";
 $username = "if0_39157215";
 $password = "7a3KRSPAcXd9w0E";
 
-$conn = new mysqli($host, $username, $password, $database);
+$conn = new mysqli($host, $username, $password, $dbname);
 
 // Check DB connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+$user_id = $_SESSION['user_id'];
+
 // Fetch items
-$sql = "SELECT title, description, category,  image_path, status, uploaded_at FROM recycle_items ORDER BY uploaded_at DESC";
-$result = $conn->query($sql);
+$sql = "SELECT title, description, category,  image_path, status, uploaded_at FROM recycle_items WHERE user_id=? ORDER BY uploaded_at DESC";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
 ?>
 
 <!DOCTYPE html>
