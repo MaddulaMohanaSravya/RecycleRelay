@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (isset($_SESSION['email'])) {
-    header("Location: Usignin.php");
+    header("Location: dashboardU.php");
     exit();
 }
 ?>
@@ -193,6 +193,7 @@ margin-top: auto;
     </style>
 </head>
 <body>
+  
 <header>
     <img src="icon.jpg" alt="Recycle Icon" class="logo" />
     <div class="header-text">
@@ -203,8 +204,6 @@ margin-top: auto;
 
   <!-- Recycler Heading -->
 <h2 class="recycler-heading">Recycler</h2>
-
-
   <div class="container">
       
 
@@ -212,7 +211,12 @@ margin-top: auto;
             <button id="show-signin" class="active">Sign In</button>
             <button id="show-signup">Sign Up</button>
         </div>
-   
+          <?php
+            if (isset($_SESSION['error'])) {
+                echo "<p style='color:red;'>" . $_SESSION['error'] . "</p>";
+                unset($_SESSION['error']);
+            }
+            ?>
         <form class="auth-box signin" method="POST" action="Usignin.php">
             <h2>Sign In</h2>
             <div class="form-group">
@@ -241,6 +245,7 @@ margin-top: auto;
                 <label>Password:</label>
                 <input type="password" name="password" required />
             </div>
+            
             <button type="submit">Register</button>
         </form>
         
